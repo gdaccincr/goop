@@ -1,0 +1,41 @@
+{
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name} {",
+      "\t${2:public} ${3:Method} {",
+      "\t\t$0",
+      "\t\treturn nil, nil",
+      "\t}",
+      "}"
+    ],
+    "description": "Declare a Goop class"
+  },
+  "Child class": {
+    "prefix": "classextends",
+    "body": [
+      "class ${1:Child} extends ${2:Parent} {",
+      "\tpublic ${3:Method} {",
+      "\t\t$0",
+      "\t\treturn nil, nil",
+      "\t}",
+      "}"
+    ],
+    "description": "Declare a class derived from another class"
+  },
+  "Constructor": {
+    "prefix": "constructor",
+    "body": [
+      "constructor {",
+      "\t$0",
+      "\treturn nil",
+      "}"
+    ],
+    "description": "Declare a Goop constructor"
+  },
+  "Goop field": {
+    "prefix": "field",
+    "body": "${1:protected} ${2:name} = ${3:nil}",
+    "description": "Declare a Goop field with visibility and default value"
+  }
+}

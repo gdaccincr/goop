@@ -1,0 +1,86 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Goop",
+  "scopeName": "source.goop",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#class-declaration" },
+    { "include": "#keywords" },
+    { "include": "#member-declarations" },
+    { "include": "#this-reference" },
+    { "include": "source.go" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "include": "#line-comment" },
+        { "include": "#block-comment" }
+      ]
+    },
+    "line-comment": {
+      "name": "comment.line.double-slash.goop",
+      "match": "//.*$"
+    },
+    "block-comment": {
+      "name": "comment.block.goop",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    "strings": {
+      "patterns": [
+        { "name": "string.quoted.double.goop", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.goop", "match": "\\\\." }] },
+        { "name": "string.quoted.raw.goop", "begin": "`", "end": "`" },
+        { "name": "string.quoted.single.goop", "begin": "'", "end": "'", "patterns": [{ "name": "constant.character.escape.goop", "match": "\\\\." }] }
+      ]
+    },
+    "class-declaration": {
+      "name": "meta.class.goop",
+      "begin": "^(\\s*)(class)\\s+([A-Za-z_][A-Za-z0-9_]*)(?:\\s+(extends)\\s+([A-Za-z_][A-Za-z0-9_]*))?\\s*(\\{)",
+      "beginCaptures": {
+        "2": { "name": "storage.type.class.goop" },
+        "3": { "name": "entity.name.type.class.goop" },
+        "4": { "name": "keyword.control.inheritance.goop" },
+        "5": { "name": "entity.other.inherited-class.goop" },
+        "6": { "name": "punctuation.section.class.begin.goop" }
+      },
+      "end": "^(\\1)(\\})",
+      "endCaptures": {
+        "2": { "name": "punctuation.section.class.end.goop" }
+      },
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        { "include": "#member-declarations" },
+        { "include": "#keywords" },
+        { "include": "#this-reference" },
+        { "include": "source.go" }
+      ]
+    },
+    "member-declarations": {
+      "patterns": [
+        {
+          "name": "meta.constructor.goop",
+          "match": "\\b(constructor)\\b",
+          "captures": { "1": { "name": "storage.type.constructor.goop" }
+          }
+        },
+        {
+          "match": "\\b(public|protected|private)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "storage.modifier.visibility.goop" },
+            "2": { "name": "entity.name.function.goop" }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "name": "keyword.control.goop",
+      "match": "\\b(class|extends|public|protected|private|constructor)\\b"
+    },
+    "this-reference": {
+      "name": "variable.language.this.goop",
+      "match": "\\b(this|args)\\b"
+    }
+  }
+}
