@@ -29,16 +29,6 @@ using it after changing the module path, pass the same repository path:
 go run ./cmd/goopc -in app.oop -out app.go -runtime github.com/acme/goop
 ```
 
-For a private GitHub module, configure access on each development machine:
-
-```powershell
-go env -w GOPRIVATE=github.com/gdaccincr/*
-```
-
-Make sure Git is authenticated (SSH or a credential manager) and the user has
-repository access. During local development, another module can use a `replace`
-directive pointing to this checkout instead of fetching it remotely.
-
 ## Quick start
 
 ```go
